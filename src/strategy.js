@@ -20,7 +20,6 @@ class ApproveAPIStrategy extends PassportStrategy {
       callbackUrl,
       contactField,
       promptMessage,
-      secret,
       ttl = 60 * 10, // default: 10 minutes
     },
     verifyUser
@@ -29,7 +28,6 @@ class ApproveAPIStrategy extends PassportStrategy {
     if (!callbackUrl) throw new Error('ApproveAPI magic link authentication strategy requires a callback URL');
     if (!contactField) throw new Error('ApproveAPI magic link authentication strategy requires a contact field');
     if (!promptMessage) throw new Error('ApproveAPI magic link authentication strategy requires a login prompt message');
-    if (!secret) throw new Error('ApproveAPI magic link authentication strategy requires a token-signing secret');
     if (!verifyUser) throw new Error('ApproveAPI magic link authentication strategy requires a verifyUser function');
     super()
 
@@ -37,7 +35,7 @@ class ApproveAPIStrategy extends PassportStrategy {
     this.callbackUrl = callbackUrl
     this.contactField = contactField
     this.promptMessage = promptMessage
-    this.secret = secret
+    this.secret = apiKey
     this.ttl = ttl
     this.verifyUser = verifyUser
 
